@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -25,7 +25,7 @@ export class UserController {
     return this.userService.findUserByEmail(email);
   }
 
-  @Get('all-user')
+  @Get('')
   findAllUser() {
     return this.userService.findAllUser();
   }

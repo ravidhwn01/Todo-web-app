@@ -5,10 +5,11 @@ import { UserModule } from './modules/user/user.module';
 import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
+import { UserService } from './modules/user/user.service';
 
 @Module({
-  imports: [UserModule, DatabaseModule, AuthModule],
+  imports: [UserModule, DatabaseModule, AuthModule, PassportModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, UserService],
 })
 export class AppModule {}

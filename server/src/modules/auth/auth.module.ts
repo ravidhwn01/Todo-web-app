@@ -6,10 +6,11 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstant } from 'src/constants/jwt-secretkey';
 import { UserModel } from 'src/schemas/user-schema';
 import { JwtStrategy } from './jwt.strategy';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
-    UserModel,
+    UserModule,
     PassportModule,
     JwtModule.register({
       secret: jwtConstant.secret,
@@ -19,7 +20,7 @@ import { JwtStrategy } from './jwt.strategy';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, AuthService],
+  providers: [AuthService, JwtStrategy, AuthModule],
   exports: [AuthService, AuthModule],
 })
 export class AuthModule {}
