@@ -1,26 +1,47 @@
 import { Injectable } from '@nestjs/common';
+import { Repository, Sequelize } from 'sequelize-typescript';
+import { TodoListModel } from 'src/schemas/todolist-schema';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 
 @Injectable()
 export class TodoService {
-  create(createTodoDto: CreateTodoDto) {
-    return 'This action adds a new todo';
+  private repository: Repository<TodoListModel>;
+  constructor(private sequelize: Sequelize) {
+    this.repository = this.sequelize.getRepository(TodoListModel);
   }
 
-  findAll() {
-    return `This action returns all todo`;
+  createTodoList(createTodoDto: CreateTodoDto) {
+    return this.repository.create(createTodoDto);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} todo`;
+  findAllTodoList() {
+    return this.repository.findAll({
+      order: [['createdAt', 'desc']],
+    });
   }
 
-  update(id: number, updateTodoDto: UpdateTodoDto) {
-    return `This action updates a #${id} todo`;
+  findOneTodoList(id: number) {
+    return this.repository.findOne({
+      where: {
+        id,
+      },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
+  updateTodoList(id: number, updateTodoDto: UpdateTodoDto) {
+    return this.repository.update(updateTodoDto, {
+      where: {
+        id,
+      },
+    });
+  }
+
+  deleteTodoList(id: number) {
+    return this.repository.destroy({
+      where: {
+        id,
+      },
+    });
   }
 }

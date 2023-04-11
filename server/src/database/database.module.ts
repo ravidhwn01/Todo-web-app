@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { TodoListModel } from 'src/schemas/todolist-schema';
 import { UserModel } from 'src/schemas/user-schema';
 
 @Module({
@@ -10,7 +11,7 @@ import { UserModel } from 'src/schemas/user-schema';
       password: 'postgres',
       username: 'postgres',
       port: 6000,
-      models: [UserModel],
+      models: [UserModel, TodoListModel],
       autoLoadModels: true,
     }),
   ],
