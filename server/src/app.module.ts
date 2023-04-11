@@ -6,9 +6,10 @@ import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 import { UserService } from './modules/user/user.service';
+import { TodoModule } from './modules/todo/todo.module';
 
 @Module({
-  imports: [UserModule, DatabaseModule, AuthModule, PassportModule],
+  imports: [UserModule, DatabaseModule, AuthModule, PassportModule, TodoModule],
   controllers: [AppController],
   providers: [AppService, UserService],
 })
