@@ -17,6 +17,14 @@ export class UserService {
     return this.repository.create({ ...createUserDto, password });
   }
 
+  findUserByEmail(email: string) {
+    return this.repository.findOne({
+      where: {
+        email: email,
+      },
+    });
+  }
+
   findAllUser() {
     return this.repository.findAll();
   }

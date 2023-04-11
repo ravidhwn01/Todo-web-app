@@ -20,6 +20,11 @@ export class UserController {
     return this.userService.createUser(createUserDto);
   }
 
+  @Get(':email')
+  findUserByEmail(@Param('email') email: string) {
+    return this.userService.findUserByEmail(email);
+  }
+
   @Get('all-user')
   findAllUser() {
     return this.userService.findAllUser();
