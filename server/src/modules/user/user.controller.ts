@@ -29,8 +29,6 @@ export class UserController {
   }
   @Get('todo')
   getAllUserWithTodo() {
-    console.log('ldfl');
-
     return this.userService.getAllUserWithTodo();
   }
   @Get(':email')

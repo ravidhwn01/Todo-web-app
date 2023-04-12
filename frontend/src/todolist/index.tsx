@@ -1,5 +1,11 @@
+import Navbar from "../navbar";
+
 function CreateTodoLists() {
-  return <div>todo lists.</div>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 }
 
 export default CreateTodoLists;

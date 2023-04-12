@@ -4,12 +4,19 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Heading,
   Input,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import { ISignupUser, UserSchema } from "./schema/signup-schema";
+import { useMutation, useQueryClient } from "react-query";
+import { createNewUser } from "../api/user api/user-api";
+import Navbar from "../navbar";
 function SignUp() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -21,15 +28,23 @@ function SignUp() {
 
   const onSubmitHandler = (userDetails: ISignupUser) => {
     console.log(userDetails);
+    createUserMutation.mutate(userDetails);
     reset({
       username: "",
       email: "",
       password: "",
     });
   };
+  const createUserMutation = useMutation(createNewUser, {
+    onSuccess: () => {
+      // queryClient.refetchQueries()
+      navigate("/");
+    },
+  });
 
   return (
     <>
+      <Navbar />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <Flex
           direction="column"
@@ -71,9 +86,14 @@ function SignUp() {
               <FormErrorMessage> {errors["password"].message}</FormErrorMessage>
             )}
           </FormControl>
-          <Button type="submit">Submit </Button>
+          <Button type="submit">Sign Up </Button>
         </Flex>
       </form>
+      <Link to="/login" color="teal.500">
+        <Heading textAlign="center" my="3" size="sm">
+          Already have an account ! Login
+        </Heading>
+      </Link>
     </>
   );
 }
