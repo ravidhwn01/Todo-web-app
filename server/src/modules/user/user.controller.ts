@@ -6,10 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('users')
 export class UserController {
@@ -18,6 +21,11 @@ export class UserController {
   @Post('')
   createUser(@Body() createUserDto: CreateUserDto) {
     return this.userService.createUser(createUserDto);
+  }
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/todos')
+  getUserWithTodo(@Request() req) {
+    return this.userService.getUserWithTodo(req.user.id);
   }
 
   @Get(':email')

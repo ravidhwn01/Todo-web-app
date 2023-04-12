@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { Repository, Sequelize } from 'sequelize-typescript';
 import { UserModel } from 'src/schemas/user-schema';
 import { encryptPassword } from 'src/utils/bcrypt';
+import { TodoListModel } from 'src/schemas/todolist-schema';
 
 @Injectable()
 export class UserService {
@@ -21,6 +22,16 @@ export class UserService {
     return this.repository.findOne({
       where: {
         email: email,
+      },
+    });
+  }
+
+  getUserWithTodo(id: number) {
+    return this.repository.findOne({
+      include: [TodoListModel],
+      order: [['updatedAt', 'desc']],
+      where: {
+        id,
       },
     });
   }
