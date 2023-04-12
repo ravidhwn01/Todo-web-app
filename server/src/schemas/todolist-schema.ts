@@ -1,4 +1,10 @@
-import { Column, ForeignKey, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  ForeignKey,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { ITodoList } from 'src/interfaces/todo-list-interface';
 import { UserModel } from './user-schema';
 

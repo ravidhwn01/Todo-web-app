@@ -27,6 +27,12 @@ export class UserController {
   getUserWithTodo(@Request() req) {
     return this.userService.getUserWithTodo(req.user.id);
   }
+  @Get('todo')
+  getAllUserWithTodo() {
+    console.log('ldfl');
+
+    return this.userService.getAllUserWithTodo();
+  }
   @Get(':email')
   findUserByEmail(@Param('email') email: string) {
     return this.userService.findUserByEmail(email);

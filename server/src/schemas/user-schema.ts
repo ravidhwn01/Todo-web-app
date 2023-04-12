@@ -1,4 +1,4 @@
-import { Column, HasMany, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, HasMany, Model, Table } from 'sequelize-typescript';
 import { IUser } from 'src/interfaces/user-interface';
 import { TodoListModel } from './todolist-schema';
 

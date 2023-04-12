@@ -35,6 +35,13 @@ export class UserService {
       },
     });
   }
+  async getAllUserWithTodo() {
+    const userWithTodo = await this.repository.findAll({
+      include: [TodoListModel],
+    });
+    console.log(userWithTodo);
+    return userWithTodo;
+  }
 
   findAllUser() {
     return this.repository.findAll();
