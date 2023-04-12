@@ -7,9 +7,10 @@ import { AuthModule } from './modules/auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 import { UserService } from './modules/user/user.service';
 import { TodoModule } from './modules/todo/todo.module';
+import { TaskModule } from './modules/task/task.module';
 
 @Module({
-  imports: [UserModule, DatabaseModule, AuthModule, PassportModule, TodoModule],
+  imports: [UserModule, DatabaseModule, AuthModule, PassportModule, TodoModule, TaskModule],
   controllers: [AppController],
   providers: [AppService, UserService],
 })

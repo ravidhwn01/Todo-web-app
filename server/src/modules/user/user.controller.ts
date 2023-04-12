@@ -27,7 +27,6 @@ export class UserController {
   getUserWithTodo(@Request() req) {
     return this.userService.getUserWithTodo(req.user.id);
   }
-
   @Get(':email')
   findUserByEmail(@Param('email') email: string) {
     return this.userService.findUserByEmail(email);

@@ -10,7 +10,4 @@ export class TodoListModel extends Model<ITodoList> {
 
   @Column
   title: string;
-
-  @Column
-  description: string;
 }
