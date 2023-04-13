@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Get, Injectable, Request, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Repository, Sequelize } from 'sequelize-typescript';
 import { UserModel } from 'src/schemas/user-schema';
 import { encryptPassword } from 'src/utils/bcrypt';
 import { TodoListModel } from 'src/schemas/todolist-schema';
+import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
 export class UserService {

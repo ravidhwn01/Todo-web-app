@@ -18,10 +18,17 @@ import { AuthGuard } from '@nestjs/passport';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @UseGuards(AuthGuard('jwt'))
+  @Get('me')
+  getUserDataUsingToken(@Request() req) {
+    console.log(req.user);
+    return req.user;
+  }
   @Post('')
   createUser(@Body() createUserDto: CreateUserDto) {
     return this.userService.createUser(createUserDto);
   }
+
   @UseGuards(AuthGuard('jwt'))
   @Get('/todos')
   getUserWithTodo(@Request() req) {
