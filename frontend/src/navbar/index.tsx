@@ -1,13 +1,24 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading, Image } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <Flex justifyContent="space-between" m="4">
-      <Flex>
+      <Flex alignContent="center">
+        <Link to={"/"}>
+          <Image
+            height="10px"
+            borderRadius="full"
+            boxSize="40px"
+            src="todo.png "
+            alt="Loading..."
+          />
+        </Link>
         <Link to="/">
-          <Heading size="md">TODO-WEB-APP</Heading>
+          <Heading mt="12px" size="md">
+            TODO-WEB-APP
+          </Heading>
         </Link>
       </Flex>
       <Flex gap="6" wrap="wrap" alignItems="center">

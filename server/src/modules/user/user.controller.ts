@@ -38,16 +38,14 @@ export class UserController {
   getAllUserWithTodo() {
     return this.userService.getAllUserWithTodo();
   }
-  @Get(':email')
-  findUserByEmail(@Param('email') email: string) {
-    return this.userService.findUserByEmail(email);
-  }
-
   @Get('')
   findAllUser() {
     return this.userService.findAllUser();
   }
-
+  @Get(':email')
+  findUserByEmail(@Param('email') email: string) {
+    return this.userService.findUserByEmail(email);
+  }
   @Get(':id')
   findOneUser(@Param('id') id: number) {
     return this.userService.findOneUser(id);

@@ -57,11 +57,15 @@ export class UserService {
   }
 
   updateUser(id: number, updateUserDto: UpdateUserDto) {
-    return this.repository.update(updateUserDto, {
-      where: {
-        id,
+    const updatedPassword = encryptPassword(updateUserDto.password);
+    return this.repository.update(
+      { ...updateUserDto, password: updatedPassword },
+      {
+        where: {
+          id,
+        },
       },
-    });
+    );
   }
 
   deleteUser(id: number) {

@@ -46,7 +46,10 @@ function CreateTodoLists() {
   return (
     <>
       <Navbar />
-      <Button onClick={onOpen}>Create Todo List</Button>
+
+      <Flex justifyContent="flex-end">
+        <Button onClick={onOpen}>Create Todo List</Button>
+      </Flex>
 
       <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />

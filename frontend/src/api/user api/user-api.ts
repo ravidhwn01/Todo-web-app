@@ -1,3 +1,4 @@
+import { countBy } from "lodash";
 import { ISignupUser } from "../../sign up/schema/signup-schema";
 import { axiosInstance } from "../instance/api-instance";
 
@@ -12,3 +13,11 @@ export async function getUserByToken() {
   console.log(user.data);
   return user.data;
 }
+
+export const updateUserProfile = async (userId: number) => {
+  const updatedUserProfileResponse = await axiosInstance.patch(
+    `/users/${userId}`
+  );
+
+  return updatedUserProfileResponse.data;
+};
