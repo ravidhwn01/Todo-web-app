@@ -11,13 +11,16 @@ export class TodoService {
     this.repository = this.sequelize.getRepository(TodoListModel);
   }
 
-  createTodoList(createTodoDto: CreateTodoDto) {
-    return this.repository.create(createTodoDto);
+  createTodoList(createTodoDto: CreateTodoDto, userId: number) {
+    return this.repository.create({ ...createTodoDto, userId: userId });
   }
 
-  findAllTodoList() {
+  findAllTodoList(userId: number) {
     return this.repository.findAll({
       order: [['createdAt', 'desc']],
+      where: {
+        userId: userId,
+      },
     });
   }
 

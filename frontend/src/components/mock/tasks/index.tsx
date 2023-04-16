@@ -21,7 +21,7 @@ function TaskBox() {
           _hover={{ bg: "blue.900" }}
         >
           <Button bg="none" _hover={{ bg: "none" }}>
-            Daily
+            meeting with raj
           </Button>
         </GridItem>
         <GridItem

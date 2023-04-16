@@ -8,3 +8,9 @@ export const createTodoList = async (todoListDetails: ITodoList) => {
   );
   return createdTodoResponse.data;
 };
+
+export const getAllTodo = async () => {
+  const allTodoResponse = await axiosInstance.get("all-todo");
+  console.log(allTodoResponse.data);
+  return allTodoResponse.data;
+};

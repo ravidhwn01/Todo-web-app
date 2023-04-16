@@ -1,8 +1,12 @@
-import { Flex, Heading, Image } from "@chakra-ui/react";
-import React from "react";
-import { Link } from "react-router-dom";
+import { Button, Flex, Heading, Image } from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/usercontext";
 
 function Navbar() {
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
   return (
     <Flex justifyContent="space-between" m="4">
       <Flex alignContent="center">
@@ -25,15 +29,31 @@ function Navbar() {
         <Link to="/">
           <Heading size="sm">Home</Heading>
         </Link>
-        <Link to="/new-todo">
-          <Heading size="sm">Create Todo's</Heading>
+        <Link to={!!user && user.username ? "/user-profile" : "/sign-up"}>
+          <Heading size="sm">
+            {!!user && user.username ? "Profile" : "Sign Up"}
+          </Heading>
         </Link>
-        <Link to="/sign-up">
-          <Heading size="sm">Sign Up</Heading>
+
+        <Link to={!!user && user.username ? "/todo-list" : "/login"}>
+          <Heading size="sm">
+            {!!user && user.username ? "All TodoList" : "Login"}
+          </Heading>
         </Link>
-        <Link to="/login">
-          <Heading size="sm">Login</Heading>
-        </Link>
+        {!!user && (
+          <Link to="/login">
+            <Heading
+              onClick={() => {
+                localStorage.removeItem("access_token");
+                setUser(undefined);
+                navigate("/todo-list");
+              }}
+              size="sm"
+            >
+              Logout
+            </Heading>
+          </Link>
+        )}
       </Flex>
     </Flex>
   );

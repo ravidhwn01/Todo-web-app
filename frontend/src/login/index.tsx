@@ -40,7 +40,7 @@ function UserLogin() {
 
   const loggedInUserMutation = useMutation(loginUser, {
     onSuccess: () => {
-      navigate("/");
+      navigate("/todo-list");
     },
     onError: () => {
       setIsError(true);

@@ -1,6 +1,12 @@
 import { Button, Grid, GridItem } from "@chakra-ui/react";
+import { ITodoList } from "../../../todolist/interface/todolist-interface";
 
-function TodoListBox() {
+interface Todo {
+  userId: number;
+  title: string;
+}
+function TodoListBox(props: Todo) {
+  const { title } = props;
   return (
     <>
       <Grid
@@ -21,85 +27,8 @@ function TodoListBox() {
           _hover={{ bg: "blue.900" }}
         >
           <Button bg="none" _hover={{ bg: "none" }}>
-            Daily
+            {title}
           </Button>
-        </GridItem>
-        <GridItem
-          bg="blue.800"
-          color="white"
-          p="6"
-          w="100%"
-          h="100%"
-          boxShadow="2xl"
-          borderRadius="8px"
-        >
-          Item
-        </GridItem>
-        <GridItem
-          bg="blue.800"
-          color="white"
-          p="6"
-          w="100%"
-          h="100%"
-          boxShadow="2xl"
-          borderRadius="8px"
-        >
-          Item
-        </GridItem>
-        <GridItem
-          bg="blue.800"
-          color="white"
-          p="6"
-          w="100%"
-          h="100%"
-          boxShadow="2xl"
-          borderRadius="8px"
-        >
-          Item
-        </GridItem>
-        <GridItem
-          bg="blue.800"
-          color="white"
-          p="6"
-          w="100%"
-          h="100%"
-          boxShadow="2xl"
-          borderRadius="8px"
-        >
-          Item
-        </GridItem>
-        <GridItem
-          bg="blue.800"
-          color="white"
-          p="6"
-          w="100%"
-          h="100%"
-          boxShadow="2xl"
-          borderRadius="8px"
-        >
-          Item
-        </GridItem>
-        <GridItem
-          bg="blue.800"
-          color="white"
-          p="6"
-          w="100%"
-          h="100%"
-          boxShadow="2xl"
-          borderRadius="8px"
-        >
-          Item
-        </GridItem>
-        <GridItem
-          bg="blue.800"
-          color="white"
-          p="6"
-          w="100%"
-          h="100%"
-          boxShadow="2xl"
-          borderRadius="8px"
-        >
-          Item
         </GridItem>
       </Grid>
     </>

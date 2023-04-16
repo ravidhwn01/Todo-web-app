@@ -16,15 +16,28 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
+import * as _ from "lodash";
 import Navbar from "../navbar";
 import { isError } from "lodash";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ITodoListSchema, TodoListSchema } from "./schema/todolist-schema";
-import { useMutation } from "react-query";
-import { createTodoList } from "../api/todolist api/create-todo-api";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import {
+  createTodoList,
+  getAllTodo,
+} from "../api/todolist api/create-todo-api";
+import { useNavigate } from "react-router-dom";
+import TodoListBox from "../components/mock/todolist box";
+import { ITodoList } from "./interface/todolist-interface";
+import { useContext } from "react";
+import { UserContext } from "../context/usercontext";
+import { Itodolist } from "../interfaces/todolist-interface";
 
 function CreateTodoLists() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     register,
@@ -34,13 +47,17 @@ function CreateTodoLists() {
     resolver: yupResolver(TodoListSchema),
   });
 
+  const { data: usertodo } = useQuery<ITodoList[]>("todo", getAllTodo);
   const onSubmitHandler = (todoListDetail: ITodoListSchema) => {
     console.log(todoListDetail);
-    createTodoListMutation.mutate({ ...todoListDetail, userId: 1 });
+    createTodoListMutation.mutate({ ...todoListDetail, userId: user!.id });
   };
 
   const createTodoListMutation = useMutation(createTodoList, {
-    onSuccess: () => {},
+    onSuccess: () => {
+      queryClient.refetchQueries("todo");
+      navigate("/todo-list");
+    },
     onError: () => {},
   });
   return (
@@ -93,6 +110,34 @@ function CreateTodoLists() {
           </ModalBody>
         </ModalContent>
       </Modal>
+
+      <Grid
+        templateColumns="repeat(auto-fit, 350px)"
+        gap={6}
+        mx="24"
+        my="8"
+        justifyContent="flex-start"
+      >
+        {_.map(usertodo, (todo: Itodolist) => {
+          return (
+            <GridItem
+              bg="blue.800"
+              color="white"
+              p="6"
+              w="100%"
+              h="100%"
+              boxShadow="2xl"
+              borderRadius="8px"
+              _hover={{ bg: "blue.900" }}
+              key={todo.id}
+            >
+              <Button bg="none" _hover={{ bg: "none" }}>
+                {todo.title}
+              </Button>
+            </GridItem>
+          );
+        })}
+      </Grid>
     </>
   );
 }

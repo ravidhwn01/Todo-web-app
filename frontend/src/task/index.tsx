@@ -23,6 +23,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "react-query";
 import { createTodoList } from "../api/todolist api/create-todo-api";
 import { ITaskListSchema, TaskListSchema } from "./schema/task-schema";
+import TaskBox from "../components/mock/tasks";
+import { createTask } from "../api/task api/create-task-api";
 
 function CreateTask() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,10 +38,10 @@ function CreateTask() {
 
   const onSubmitHandler = (taskListDetail: ITaskListSchema) => {
     console.log(taskListDetail);
-    // createTodoListMutation.mutate({ ...taskListDetail, todoListId: 1 });
+    createTodoListMutation.mutate({ ...taskListDetail, todoListId: 1 });
   };
 
-  const createTodoListMutation = useMutation(createTodoList, {
+  const createTodoListMutation = useMutation(createTask, {
     onSuccess: () => {},
     onError: () => {},
   });
@@ -112,6 +114,7 @@ function CreateTask() {
           </ModalBody>
         </ModalContent>
       </Modal>
+      <TaskBox />
     </>
   );
 }
