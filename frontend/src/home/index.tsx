@@ -3,6 +3,7 @@ import Navbar from "../navbar";
 import TodoListBox from "../components/mock/todolist box";
 import { UserProfile } from "../components/mock/user profile";
 import { UpdateUserProfile } from "../components/mock/user profile/updateProfile";
+import UserLists from "../components/mock/userlist";
 
 function Home() {
   return (

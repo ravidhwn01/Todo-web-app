@@ -11,9 +11,11 @@ import {
   DrawerFooter,
   Heading,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../../context/usercontext";
 
 export function UpdateUserProfile() {
+  const { user, setUser } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef(null);
 
@@ -24,7 +26,7 @@ export function UpdateUserProfile() {
       </Button>
       <Drawer
         isOpen={isOpen}
-        placement="right"
+        placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
@@ -34,9 +36,13 @@ export function UpdateUserProfile() {
           <DrawerHeader>Profile</DrawerHeader>
 
           <DrawerBody>
-            <Input placeholder="Type new name..." />
-            <Input placeholder="Type email..." />
-            <Input placeholder="Type password..." />
+            <Input
+              mt="2"
+              value={user?.username}
+              placeholder="Type new name..."
+            />
+            <Input mt="2" value={user?.email} placeholder="Type email..." />
+            <Input mt="2" placeholder="Type new password..." />
           </DrawerBody>
 
           <DrawerFooter>

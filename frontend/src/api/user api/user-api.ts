@@ -8,6 +8,11 @@ export const createNewUser = async (newUser: ISignupUser) => {
   return createdUserResponse.data;
 };
 
+export const getAllUser = async () => {
+  const userResponse = await axiosInstance.get("users");
+  return userResponse.data;
+};
+
 export async function getUserByToken() {
   const user = await axiosInstance.get("/users/me");
   console.log(user.data);

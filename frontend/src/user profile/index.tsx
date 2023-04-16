@@ -10,9 +10,11 @@ function Profile() {
   return (
     <>
       <Navbar />
-      <UserProfile />
-      <UpdateUserProfile />
-      <Flex
+      <Flex gap="4" justifyContent="flex-end">
+        <UserProfile />
+        <UpdateUserProfile />
+      </Flex>
+      {/* <Flex
         direction="column"
         w="100vw"
         h="100vh"
@@ -21,7 +23,7 @@ function Profile() {
       >
         <Heading> {user?.username} </Heading>
         <Heading> {user?.email} </Heading>
-      </Flex>
+      </Flex> */}
     </>
   );
 }

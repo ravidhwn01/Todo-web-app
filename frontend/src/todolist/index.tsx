@@ -30,15 +30,17 @@ import {
 import { useNavigate } from "react-router-dom";
 import TodoListBox from "../components/mock/todolist box";
 import { ITodoList } from "./interface/todolist-interface";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../context/usercontext";
 import { Itodolist } from "../interfaces/todolist-interface";
+import UserLists from "../components/mock/userlist";
 
 function CreateTodoLists() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const finalRef = React.useRef(null);
   const {
     register,
     handleSubmit,

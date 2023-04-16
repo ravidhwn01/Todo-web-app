@@ -39,8 +39,8 @@ export class UserController {
     return this.userService.getAllUserWithTodo();
   }
   @Get('')
-  findAllUser() {
-    return this.userService.findAllUser();
+  findAllUserWithName() {
+    return this.userService.findAllUserWithName();
   }
   @Get(':email')
   findUserByEmail(@Param('email') email: string) {

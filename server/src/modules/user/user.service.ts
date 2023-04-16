@@ -44,8 +44,10 @@ export class UserService {
     return userWithTodo;
   }
 
-  findAllUser() {
-    return this.repository.findAll();
+  findAllUserWithName() {
+    return this.repository.findAll({
+      attributes: ['username', 'id'],
+    });
   }
 
   findOneUser(id: number) {
