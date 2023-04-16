@@ -4,27 +4,22 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Grid,
-  GridItem,
   Input,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import Navbar from "../navbar";
-import { isError } from "lodash";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { createTodoList } from "../api/todolist api/create-todo-api";
-import { ITaskListSchema, TaskListSchema } from "./schema/task-schema";
-import TaskBox from "../components/mock/tasks";
 import { createTask } from "../api/task api/create-task-api";
+import TaskBox from "../components/mock/tasks";
+import Navbar from "../navbar";
+import { ITaskListSchema, TaskListSchema } from "./schema/task-schema";
 
 function CreateTask() {
   const { isOpen, onOpen, onClose } = useDisclosure();

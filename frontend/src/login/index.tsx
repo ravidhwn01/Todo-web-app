@@ -51,13 +51,7 @@ function UserLogin() {
     <>
       <Navbar />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <Flex
-          direction="column"
-          w="100vw"
-          h="100vh"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Flex direction="column" justifyContent="center" alignItems="center">
           <FormControl w="50%" mb="2" isInvalid={!!errors["email"]?.message}>
             <FormLabel m="0">Email</FormLabel>
             <Input

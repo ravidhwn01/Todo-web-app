@@ -19,10 +19,14 @@ export class TaskController {
   create(@Body() createTaskDto: CreateTaskDto) {
     return this.taskService.createTask(createTaskDto);
   }
-
-  @Get()
+  @Get('')
   findAll() {
-    return this.taskService.findAllTask();
+    return this.taskService.findAll();
+  }
+
+  @Get('todoListId')
+  findAllTask(@Param('todoListId') todoListId: number) {
+    return this.taskService.findAllTask(todoListId);
   }
 
   @Get(':id')

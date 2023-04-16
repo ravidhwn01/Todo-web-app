@@ -103,7 +103,9 @@ function CreateTodoLists() {
                   <Button colorScheme="blue" mr={3} onClick={onClose}>
                     Close
                   </Button>
-                  <Button type="submit">Add </Button>
+                  <Button type="submit" onClick={onClose}>
+                    Add{" "}
+                  </Button>
                 </Flex>
               </Flex>
             </form>
@@ -134,6 +136,10 @@ function CreateTodoLists() {
               <Button bg="none" _hover={{ bg: "none" }}>
                 {todo.title}
               </Button>
+
+              <Flex justifyContent="flex-end">
+                <Button color="blue.900">Share</Button>
+              </Flex>
             </GridItem>
           );
         })}

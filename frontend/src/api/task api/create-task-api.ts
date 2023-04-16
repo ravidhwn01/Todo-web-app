@@ -8,6 +8,7 @@ export const createTask = async (newTaskDetails: ITaskListSchema) => {
   );
   return createdTaskResponse.data;
 };
+
 export const getAllTasks = async () => {
   const allTaskResponse = await axiosInstance.get("tasks");
   return allTaskResponse.data;

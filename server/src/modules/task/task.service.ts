@@ -16,9 +16,17 @@ export class TaskService {
     return this.repository.create(createTaskDto);
   }
 
-  findAllTask() {
+  findAllTask(todoListId: number) {
     return this.repository.findAll({
       order: [['createAt', 'desc']],
+      where: {
+        todoListId: todoListId,
+      },
+    });
+  }
+  findAll() {
+    return this.repository.findAll({
+      order: [['createdAt', 'desc']],
     });
   }
 

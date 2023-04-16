@@ -3,6 +3,7 @@ import { Repository, Sequelize } from 'sequelize-typescript';
 import { TodoListModel } from 'src/schemas/todolist-schema';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
+import { TaskModel } from 'src/schemas/task-schema';
 
 @Injectable()
 export class TodoService {
@@ -20,6 +21,15 @@ export class TodoService {
       order: [['createdAt', 'desc']],
       where: {
         userId: userId,
+      },
+    });
+  }
+
+  findTodoListWithTask(id: number) {
+    return this.repository.findAll({
+      include: [TaskModel],
+      where: {
+        id,
       },
     });
   }

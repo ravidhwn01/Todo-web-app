@@ -30,6 +30,11 @@ export class TodoController {
     return this.todoService.findAllTodoList(req.user.id);
   }
 
+  @Get('todo/tasks/:id')
+  findAllTodoWithTask(@Param('id') id: number) {
+    return this.todoService.findTodoListWithTask(id);
+  }
+
   @Get('todo/:id')
   findOne(@Param('id') id: number) {
     return this.todoService.findOneTodoList(id);

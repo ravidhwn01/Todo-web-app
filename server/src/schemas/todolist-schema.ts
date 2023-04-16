@@ -2,11 +2,13 @@ import {
   BelongsTo,
   Column,
   ForeignKey,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { ITodoList } from 'src/interfaces/todo-list-interface';
 import { UserModel } from './user-schema';
+import { TaskModel } from './task-schema';
 
 @Table
 export class TodoListModel extends Model<ITodoList> {
@@ -16,4 +18,7 @@ export class TodoListModel extends Model<ITodoList> {
 
   @Column
   title: string;
+
+  @HasMany(() => TaskModel)
+  tasks: TaskModel[];
 }
